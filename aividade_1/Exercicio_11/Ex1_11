@@ -1,0 +1,13 @@
+Não, pois como foi dito na questão 8, um vetor pode ser interpretado como um ponteiro:
+
+
+"Um Vetor é uma estrutura de dados que armazena
+elementos em uma sequecia de 0 a N, N pertence aos Naturais.
+
+Um Ponteiro (P) é uma variavel que armazena o endereço de uma outra variavel (X).
+De tal forma que, através de P se torna possivel acessar as informações de X,
+e por consequencia manipulalas.
+
+Estes objetos se relacionam pois um Vetor pode ser interpretado como um Ponteiro.
+Pois, considerando um Ponteiro (P) que aponta para a preimeira posiçao de um Vetor ( V[0] ),
+e através de uma aritmetica apropriada, se torna possivel manipular o conteudo do Vetor."

@@ -1,0 +1,6 @@
+vet[3] é o valor armazenadoo na quarta posição
+vet + 3 é o endereço da quarta posição
+
+vet[3] é equivalente a *(vet + 3)
+
+vet + 3 é equivalente a &vet[3]

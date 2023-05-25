@@ -1,0 +1,4 @@
+Atraves dos Ponteiros, é possivel ter acessar e manipular de
+dados na memoria. De tal forma que, a alocação dinamica
+otimiza o uso de memoria pois se torna possivel alocar uma quantidade
+necessaria para realizar uma operação.

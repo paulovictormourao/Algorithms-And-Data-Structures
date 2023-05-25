@@ -1,0 +1,33 @@
+Como uma String pode ser interpretada como um Vetor de Caracteres,
+é valida a realação descrita na Questão 8 da atividade 1:
+
+"Um Vetor é uma estrutura de dados que armazena
+elementos em uma sequecia de 0 a N, N pertence aos Naturais.
+
+Um Ponteiro (P) é uma variavel que armazena o endereço de uma outra variavel (X).
+De tal forma que, através de P se torna possivel acessar as informações de X,
+e por consequencia manipulalas.
+
+Estes objetos se relacionam pois um Vetor pode ser interpretado como um Ponteiro.
+Pois, considerando um Ponteiro (P) que aponta para a preimeira posiçao de um Vetor ( V[0] ),
+e através de uma aritmetica apropriada, se torna possivel manipular o conteudo do Vetor."
+
+Exemplo:
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char vet[] = "a b c";
+    int i;
+
+    for (i = 0; i < strlen(vet); i++)
+    {
+        printf("%c", *(vet + i) );
+        printf("%c", *(vet + strlen(vet) - i - 1) );
+    }
+}
+
+output: ac  bb  ca
+
