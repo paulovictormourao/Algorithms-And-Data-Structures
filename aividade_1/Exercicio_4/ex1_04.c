@@ -7,27 +7,16 @@
 */ 
 
 #include <stdio.h>
-#include "f1_04.h"
+#include "f1_04.c"
 
 
 int main(int argc, char** argv)
 {
 
-    int j, i;
-    double grade, vet[SIZE];
+    double vet_averages[SIZE];
 
-    for (j = 0; j < SIZE; j++) {
-        double total = 0;
+    fill(vet_averages);
 
-        for (i = 0; i < 4; i++) {
-
-            scanf("%lf", &grade);
-            total += grade;
-
-        }
-        vet[j] = total;
-    }
-
-    print_average(vet);
+    print_average(vet_averages);
 
 }

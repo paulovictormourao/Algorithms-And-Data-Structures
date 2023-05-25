@@ -7,6 +7,7 @@
 */ 
 
 #include <stdio.h>
+#include "f1_02.c"
 
 int main(int argc, char** argv)
 {
@@ -19,9 +20,8 @@ int main(int argc, char** argv)
 		scanf("%lf", &vet[i]);
 	}
 
-	for(i = 9; i > -1; i--)
-	{
-		printf("%f\n", vet[i]);
-	}	
+    invert(vet);
+
+
 	
 }

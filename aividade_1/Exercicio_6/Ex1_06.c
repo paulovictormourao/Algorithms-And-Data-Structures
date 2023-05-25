@@ -8,7 +8,7 @@
 
 
 #include <stdio.h>
-#include "f1_06.h"
+#include "f1_06.c"
 
 int main (int argc, char** argv)
 {

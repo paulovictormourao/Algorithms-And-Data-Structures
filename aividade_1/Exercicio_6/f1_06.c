@@ -1,8 +1,4 @@
-#ifndef ALGORITHMS_AND_DATA_STRUCTURES_F1_06_H
-#define ALGORITHMS_AND_DATA_STRUCTURES_F1_06_H
-
-#endif //ALGORITHMS_AND_DATA_STRUCTURES_F1_06_H
-
+#include <stdio.h>
 
 void multiply (float *A, float *B, float *C, int m, int n, int p)
 {

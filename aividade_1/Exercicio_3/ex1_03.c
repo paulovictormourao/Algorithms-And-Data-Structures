@@ -7,20 +7,21 @@
 */ 
 
 #include <stdio.h>
+#include "f1_03.c"
 
 int main(int argc, char** argv)
 {
 	int i;
-	double grade, total = 0;
+	double grade[4], total = 0;
 	
 	
 	for(i = 0; i < 4; i++)
 	{
 		
-		scanf("%lf", &grade);
-		total += grade;
+		scanf("%lf", &grade[i]);
 		
 	}
-	printf("%.1f\n", total/4);
+
+    print(grade);
 
 }

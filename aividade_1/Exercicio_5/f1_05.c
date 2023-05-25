@@ -1,11 +1,3 @@
-//
-// Created by Samsung on 20/05/2023.
-//
-
-#ifndef ALGORITHMS_AND_DATA_STRUCTURES_F1_05_H
-#define ALGORITHMS_AND_DATA_STRUCTURES_F1_05_H
-
-#endif //ALGORITHMS_AND_DATA_STRUCTURES_F1_05_H
 #include <stdio.h>
 
 void fill(float *vet, float *even, float *odd)

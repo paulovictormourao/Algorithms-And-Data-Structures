@@ -7,7 +7,7 @@
 */ 
 
 #include <stdio.h>
-#include "f1_05.h"
+#include "f1_05.c"
 
 
 int main(int argc, char** argv)
