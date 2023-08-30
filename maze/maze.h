@@ -36,11 +36,12 @@ Point top(Stack* stack) {
 }
 
 int isValidMove(int maze[SIZE][SIZE], int row, int col) {
-    if (col == 9 && row == 9){
-        return 5;
+
+    if ( ( ((row >= 0) && (row < SIZE)) && ( (col >= 0) && (col < SIZE) ) ) && (maze[row][col] == 0) ){
+        return 1;
     }
 
-    return (row >= 0 && row < SIZE && col >= 0 && col < SIZE && maze[row][col] == 0);
+    return 0;
 
 }
 
@@ -52,21 +53,11 @@ void printMaze(int maze[SIZE][SIZE]) {
         }
         printf("\n");
     }
-    for (i = 0; i < SIZE; i++) {
-        for (j = 0; j < SIZE; j++) {
-            if (maze[i][j] == 3){
-                printf("(%d, %d)", i+1, j+1);
-            }
-
-        }
-    }
-
 }
 
 int solveMaze(int maze[SIZE][SIZE], int row, int col)
 {
-    int found = 0;
-    int solved = 0;
+
     maze[row][col] = 3;
 
     Stack stack;
@@ -74,8 +65,8 @@ int solveMaze(int maze[SIZE][SIZE], int row, int col)
 
     push(&stack, row, col);
 
+    while(!isEmpty(&stack)) {
 
-    while(1){
         Point current = top(&stack);
 
         if (current.row == SIZE - 1 && current.col == SIZE - 1) {
@@ -83,23 +74,57 @@ int solveMaze(int maze[SIZE][SIZE], int row, int col)
             return 1;
         }
 
-        int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        int found = 0;
+
+        //int moves[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+        int newRow;
+        int newCol;
 
         for (int i = 0; i < 4; i++) {
 
-            int newRow = current.row + moves[i][0];
-            int newCol = current.col + moves[i][1];
+            newRow = current.row;
+            newCol = current.col;
 
-            if (isValidMove(maze, newRow, newCol)) {
+            switch (i) {
+                case (0):
+                    newCol++;
+                    break;
+
+                case (1):
+                    newRow++;
+                    break;
+
+                case (2):
+                    newCol--;
+                    break;
+
+                case (3):
+
+                    newRow--;
+                    break;
+
+                default:
+                    maze[newRow][newCol] = 4;
+                    break;
+            }
+
+
+            if (isValidMove(maze, newRow, newCol))
+            {
+                printf("%d  %d\n", newCol, newRow);
                 push(&stack, newRow, newCol);
                 found = 1;
                 maze[newRow][newCol] = 3;
                 break;
             }
+
         }
         if (!found)
         {
             pop(&stack);
         }
+
     }
+    return 0;
 }
