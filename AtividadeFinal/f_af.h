@@ -3,35 +3,34 @@
 
 #define MAX_CHAVES 3
 
-typedef struct Pagina
+typedef struct No
 {
     int chaves[MAX_CHAVES];
-    struct Pagina *filhos[MAX_CHAVES + 1];
+    struct No *filhos[MAX_CHAVES + 1];
     int num_chaves;
-    struct Pagina *pai;
-}
-Pagina;
+    struct No *pai;
+} No;
 
-Pagina *criarPagina()
+No *criarNo()
 {
-    Pagina *novaPagina = (Pagina *)malloc(sizeof(Pagina));
-    if (novaPagina)
+    No *novoNo = (No *)malloc(sizeof(No));
+    if (novoNo)
     {
-        novaPagina->num_chaves = 0;
-        novaPagina->pai = NULL;
+        novoNo->num_chaves = 0;
+        novoNo->pai = NULL;
         for (int i = 0; i <= MAX_CHAVES; i++)
         {
-            novaPagina->filhos[i] = NULL;
+            novoNo->filhos[i] = NULL;
         }
     }
-    return novaPagina;
+    return novoNo;
 }
 
-void dividirFilho(Pagina *paginaPai, int indiceFilho)
+void dividirFilho(No *noPai, int indiceFilho)
 {
-    Pagina *filho = paginaPai->filhos[indiceFilho];
-    Pagina *novoFilho = criarPagina();
-    novoFilho->pai = paginaPai;
+    No *filho = noPai->filhos[indiceFilho];
+    No *novoFilho = criarNo();
+    novoFilho->pai = noPai;
 
     for (int i = 0; i < MAX_CHAVES - 1; i++)
     {
@@ -50,58 +49,59 @@ void dividirFilho(Pagina *paginaPai, int indiceFilho)
         }
     }
 
-    for (int i = paginaPai->num_chaves; i > indiceFilho; i--)
+    for (int i = noPai->num_chaves; i > indiceFilho; i--)
     {
-        paginaPai->filhos[i + 1] = paginaPai->filhos[i];
+        noPai->filhos[i + 1] = noPai->filhos[i];
     }
-    paginaPai->filhos[indiceFilho + 1] = novoFilho;
+    noPai->filhos[indiceFilho + 1] = novoFilho;
 
-    for (int i = paginaPai->num_chaves - 1; i >= indiceFilho; i--)
+    for (int i = noPai->num_chaves - 1; i >= indiceFilho; i--)
     {
-        paginaPai->chaves[i + 1] = paginaPai->chaves[i];
+        noPai->chaves[i + 1] = noPai->chaves[i];
     }
-    paginaPai->chaves[indiceFilho] = filho->chaves[MAX_CHAVES - 1];
-    paginaPai->num_chaves++;
+    noPai->chaves[indiceFilho] = filho->chaves[MAX_CHAVES - 1];
+    noPai->num_chaves++;
     filho->num_chaves = MAX_CHAVES - 1;
 }
 
-void inserirNaoCheio(Pagina *pagina, int chave)
+void inserirNaoCheio(No *no, int chave)
 {
-    int i = pagina->num_chaves - 1;
-    if (pagina->filhos[0] == NULL)
+    int i = no->num_chaves - 1;
+    if (no->filhos[0] == NULL)
     {
-        while (i >= 0 && chave < pagina->chaves[i])
+        while (i >= 0 && chave < no->chaves[i])
         {
-            pagina->chaves[i + 1] = pagina->chaves[i];
+            no->chaves[i + 1] = no->chaves[i];
             i--;
         }
-        pagina->chaves[i + 1] = chave;
-        pagina->num_chaves++;
+        no->chaves[i + 1] = chave;
+        no->num_chaves++;
     }
     else
     {
-        while (i >= 0 && chave < pagina->chaves[i])
+        while (i >= 0 && chave < no->chaves[i])
         {
             i--;
         }
         i++;
-        if (pagina->filhos[i]->num_chaves == MAX_CHAVES)
+
+        if (no->filhos[i]->num_chaves == MAX_CHAVES)
         {
-            dividirFilho(pagina, i);
-            if (chave > pagina->chaves[i])
+            dividirFilho(no, i);
+            if (chave > no->chaves[i])
             {
                 i++;
             }
         }
-        inserirNaoCheio(pagina->filhos[i], chave);
+        inserirNaoCheio(no->filhos[i], chave);
     }
 }
 
-Pagina *inserir(Pagina *raiz, int chave)
+No *inserir(No *raiz, int chave)
 {
     if (raiz == NULL)
     {
-        Pagina *novaRaiz = criarPagina();
+        No *novaRaiz = criarNo();
         novaRaiz->chaves[0] = chave;
         novaRaiz->num_chaves = 1;
         return novaRaiz;
@@ -109,7 +109,7 @@ Pagina *inserir(Pagina *raiz, int chave)
 
     if (raiz->num_chaves == MAX_CHAVES)
     {
-        Pagina *novaRaiz = criarPagina();
+        No *novaRaiz = criarNo();
         novaRaiz->filhos[0] = raiz;
         dividirFilho(novaRaiz, 0);
         inserirNaoCheio(novaRaiz, chave);
@@ -120,7 +120,8 @@ Pagina *inserir(Pagina *raiz, int chave)
     return raiz;
 }
 
-Pagina *buscar(Pagina *raiz, int chave) {
+No *buscar(No *raiz, int chave)
+{
     if (raiz == NULL)
     {
         return NULL;
@@ -132,22 +133,16 @@ Pagina *buscar(Pagina *raiz, int chave) {
         i++;
     }
 
-    if (i < raiz->num_chaves && chave == raiz->chaves[i])
-    {
+    if (i < raiz->num_chaves && chave == raiz->chaves[i]) {
         return raiz;
+    } else if (raiz->filhos[0] == NULL)
+    {
+        return NULL;
     }
-
     else
     {
-
-        if (raiz->filhos[0] == NULL)
-        {
-            return NULL;
-        }
-        else
-        {
-            return buscar(raiz->filhos[i], chave);
-        }
-
+        return buscar(raiz->filhos[i], chave);
     }
 }
+
+
