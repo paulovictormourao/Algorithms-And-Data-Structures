@@ -1,6 +1,7 @@
 #include "f_af.h"
 
-int main() {
+int main(int argc, char** argv)
+{
     Pagina *raiz = NULL;
 
     raiz = inserir(raiz, 10);
@@ -11,9 +12,13 @@ int main() {
 
     int chave_para_buscar = 6;
     Pagina *resultado = buscar(raiz, chave_para_buscar);
-    if (resultado) {
+
+    if (resultado)
+    {
         printf("Chave %d encontrada!\n", chave_para_buscar);
-    } else {
+    }
+    else
+    {
         printf("Chave %d não encontrada.\n", chave_para_buscar);
     }
 
