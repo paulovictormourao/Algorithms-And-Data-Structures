@@ -1,3 +1,23 @@
+/*
+   Curso: Sistemas de Informação
+   Disciplina: Algoritmos e Estruturas de Dados I
+   Alunos: Evelyn Sabrina Bessa
+                Gisele de Sá
+                Gabriel Dias Rejtman
+                Josue Azevedo Gomes
+                Paulo Victor Mourão da Costa
+                Raquel Karolyne Carlotto Santos
+                William Matheus de Souza Cunha
+                Yago De Almeida Nunes
+   Matrículas respectivas: 2215310007
+                                        2215310009
+                                        2215310051
+                                        2215310054
+                                        2215310043
+                                        2215310044
+                                        2215310030
+                                        2215310059
+*/
 #include "f_af.h"
 
 int main(int argc, char** argv)
